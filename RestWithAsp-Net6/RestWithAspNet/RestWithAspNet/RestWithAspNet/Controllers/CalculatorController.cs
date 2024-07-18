@@ -48,7 +48,7 @@ namespace RestWithAspNet.Controllers
         }
 
         [HttpGet("div/{firstNumber}/{secondNumber}")]
-        public IActionResult Gitdiv(string firstNumber, string secondNumber)
+        public IActionResult Getdiv(string firstNumber, string secondNumber)
         {
             if (Isnumeric(firstNumber) && Isnumeric(secondNumber))
             {
@@ -58,6 +58,26 @@ namespace RestWithAspNet.Controllers
             return BadRequest("Invalid Input");
         }
 
+        [HttpGet("med/{firstNumber}/{secondNumber}")]
+        public IActionResult Getmed(string firstNumber, string secondNumber)
+        {
+            if (Isnumeric(firstNumber) && Isnumeric(secondNumber))
+            {
+                var sum = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber)) / 2;
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+        [HttpGet("sqr/{firstNumber}")]
+        public IActionResult Getsqr(string firstNumber)
+        {
+            if (Isnumeric(firstNumber))
+            {
+                var sqr = Math.Sqrt( (double)(ConvertToDecimal(firstNumber)));
+                return Ok(sqr.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
         private bool Isnumeric(string strNumber)
         {
             double number;
